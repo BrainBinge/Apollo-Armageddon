@@ -26,11 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>globalvar DebugMode;
-DebugMode = false
+DebugMode = true
 
-
-globalvar TestName;
-TestName = false
 </string>
           </argument>
         </arguments>
@@ -55,67 +52,36 @@ TestName = false
             <kind>1</kind>
             <string>if (DebugMode) 
     {
-        draw_text(view_xview[0]+320, view_yview[0]+8,"GFPS:")
-        draw_text(view_xview[0]+365, view_yview[0]+8, +string ( fps ))
-        
-    
-       
+        draw_text(view_xview[0]+320, view_yview[0]+8,"Player")         
          
-            draw_text(view_xview[0]+320,view_yview[0]+24,"Vspd:")
-            draw_text(view_xview[0]+365,view_yview[0]+24, string (obj_player.vspeed))
+        draw_text(view_xview[0]+320,view_yview[0]+24,"Vspeed")
+        draw_text(view_xview[0]+385,view_yview[0]+24, string (obj_player.vspd))
             
+        draw_text(view_xview[0]+320,view_yview[0]+40,"Hspd:")
+        draw_text(view_xview[0]+385,view_yview[0]+40, string (obj_player.hspd))
+       
+        draw_text(view_xview[0]+320,view_yview[0]+56,"Direction:")
+        draw_text(view_xview[0]+385,view_yview[0]+56, string (obj_player.facing))
+       
+        draw_text(view_xview[0]+320,view_yview[0]+72, "Daggers:")
+        draw_text(view_xview[0]+385,view_yview[0]+72, string (BDEquip))
+       
+        draw_text(view_xview[0]+320,view_yview[0]+88, "Alarm3:")
+        draw_text(view_xview[0]+385,view_yview[0]+88, string(obj_player.alarm[3]))
+     
+         
+        draw_text(view_xview[0]+320,view_yview[0]+104, "Health:")
+        draw_text(view_xview[0]+385,view_yview[0]+104, string (global.hp))
         
+        
+        draw_text(view_xview[0]+320,view_yview[0]+120, "X:")
+        draw_text(view_xview[0]+385,view_yview[0]+120, string (obj_player.x))
+        
+        draw_text(view_xview[0]+320,view_yview[0]+136, "Y:")
+        draw_text(view_xview[0]+385,view_yview[0]+136, string (obj_player.y))
          
 }
     
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="111">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>DebugMode = true
-TestName = true
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="106">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>DebugMode = false
-TestName = false
 </string>
           </argument>
         </arguments>

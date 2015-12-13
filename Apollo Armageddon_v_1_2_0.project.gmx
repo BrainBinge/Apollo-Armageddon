@@ -6,8 +6,30 @@
   <datafiles number="1" name="datafiles"/>
   <NewExtensions/>
   <sounds name="sound">
-    <sound>sound\sd_beginning</sound>
-    <sound>sound\Track_2</sound>
+    <sounds name="Weaponary">
+      <sound>sound\Gun_attack</sound>
+    </sounds>
+    <sounds name="Background Music">
+      <sound>sound\sd_beginning</sound>
+    </sounds>
+    <sounds name="Enemies">
+      <sounds name="Eyeball">
+        <sound>sound\sd_Eyeballstatic</sound>
+        <sounds name="Hurt">
+          <sound>sound\sd_Eyeballhurt</sound>
+          <sounds name="Death">
+            <sound>sound\sd_Eyeballdeath</sound>
+          </sounds>
+        </sounds>
+      </sounds>
+      <sounds name="Zak'rerak">
+        <sound>sound\sd_zak_alert</sound>
+        <sounds name="Death">
+          <sound>sound\sd_zakdeath</sound>
+        </sounds>
+      </sounds>
+    </sounds>
+    <sound>sound\sd_footstep</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Reg Player Sprites">
@@ -15,6 +37,7 @@
       <sprite>sprites\spr_player_mask</sprite>
       <sprite>sprites\spr_playerRunRight</sprite>
       <sprite>sprites\spr_playerRunLeft</sprite>
+      <sprite>sprites\player_mask</sprite>
       <sprites name="Player Attacks">
         <sprites name="Sword Attacks">
           <sprite>sprites\spr_player_swordR</sprite>
@@ -25,19 +48,11 @@
             <sprite>sprites\spr_sword_maskL</sprite>
           </sprites>
         </sprites>
-        <sprites name="Gun Attack">
-          <sprite>sprites\spr_player_UPandRight</sprite>
-          <sprite>sprites\spr_player_AttackUPL</sprite>
-          <sprite>sprites\spr_player_AttackDown</sprite>
-          <sprite>sprites\spr_CandFire</sprite>
-          <sprite>sprites\spr_CandFireL</sprite>
-          <sprite>sprites\spr_player_DownandLeft</sprite>
-          <sprite>sprites\spr_playerAttackDownL</sprite>
-          <sprite>sprites\spr_player_AttackUP</sprite>
+        <sprites name="Gun Attacks">
           <sprite>sprites\spr_a_AttackRight</sprite>
           <sprite>sprites\spr_a_AttackLeft</sprite>
-          <sprite>sprites\spr_playerUPandLeft</sprite>
-          <sprite>sprites\spr_player_DownandRight</sprite>
+          <sprite>sprites\spr_rungun</sprite>
+          <sprite>sprites\spr_rungunl</sprite>
         </sprites>
       </sprites>
       <sprites name="Special Attacks">
@@ -50,32 +65,29 @@
         <sprite>sprites\spr_playerRunLeftBD</sprite>
         <sprites name="Attacks">
           <sprite>sprites\spr_player_daggerR</sprite>
+          <sprite>sprites\spr_player_daggerL</sprite>
         </sprites>
       </sprites>
-    </sprites>
-    <sprites name="Hp Suit Sprites">
-      <sprite>sprites\spr_php_idleR</sprite>
-      <sprite>sprites\spr_php_idleL</sprite>
-      <sprite>sprites\spr_php_runR</sprite>
-      <sprite>sprites\spr_php_runL</sprite>
-      <sprites name="Attacking Sprites">
-        <sprite>sprites\spr_php_attackR</sprite>
-        <sprite>sprites\spr_php_attackL</sprite>
+      <sprites name="Jump">
+        <sprite>sprites\spr_playerjump</sprite>
+      </sprites>
+      <sprites name="Terk Hurt">
+        <sprite>sprites\spr_player_Hurt</sprite>
       </sprites>
     </sprites>
     <sprites name="Special objects">
       <sprite>sprites\spr_bullet</sprite>
+      <sprite>sprites\spr_bulletleft</sprite>
       <sprite>sprites\spr_stealth_suit</sprite>
       <sprite>sprites\sprite45</sprite>
       <sprite>sprites\spr_warp</sprite>
-      <sprite>sprites\spr_health</sprite>
+      <sprite>sprites\spr_healthup</sprite>
       <sprite>sprites\spr_SA</sprite>
-      <sprite>sprites\spr_loaded_game</sprite>
       <sprites name="Save Station">
         <sprite>sprites\spr_hp_suit</sprite>
         <sprite>sprites\spr_save</sprite>
       </sprites>
-      <sprite>sprites\spr_nosprite</sprite>
+      <sprite>sprites\spr_health</sprite>
     </sprites>
     <sprites name="blocks">
       <sprite>sprites\spr_floor_mask</sprite>
@@ -88,21 +100,10 @@
       <sprite>sprites\spr_stair</sprite>
       <sprite>sprites\spr_piece_stair</sprite>
       <sprite>sprites\spr_piece_stairL</sprite>
-      <sprite>sprites\spr_ceiling</sprite>
-      <sprite>sprites\spr_floor1</sprite>
       <sprite>sprites\spr_spikes</sprite>
-      <sprite>sprites\spr_floor2</sprite>
-      <sprite>sprites\spr_jumpthru1</sprite>
+      <sprite>sprites\spr_moveplateform</sprite>
     </sprites>
     <sprites name="enemies">
-      <sprites name="weak zombie">
-        <sprite>sprites\spr_WZL</sprite>
-        <sprite>sprites\spr_WZR</sprite>
-        <sprites name="Zombie Attacks">
-          <sprite>sprites\spr_ZomSpit</sprite>
-          <sprite>sprites\spr_gas_mask</sprite>
-        </sprites>
-      </sprites>
       <sprites name="Eyeball">
         <sprite>sprites\spr_Eyball</sprite>
         <sprites name="Bug">
@@ -110,6 +111,18 @@
           <sprite>sprites\spr_bug_runL</sprite>
           <sprite>sprites\spr_bug_fallL</sprite>
           <sprite>sprites\spr_bug_fallR</sprite>
+        </sprites>
+      </sprites>
+      <sprites name="Zak'rarek">
+        <sprite>sprites\spr_zakwalk</sprite>
+        <sprite>sprites\spr_zakwalkL</sprite>
+        <sprite>sprites\spr_zakidle</sprite>
+        <sprite>sprites\spr_zakidleL</sprite>
+        <sprites name="Attacks">
+          <sprite>sprites\spr_zakspit</sprite>
+          <sprite>sprites\spr_zakattack</sprite>
+          <sprite>sprites\spr_zakclaw</sprite>
+          <sprite>sprites\spr_zakattackL</sprite>
         </sprites>
       </sprites>
     </sprites>
@@ -125,27 +138,16 @@
     <sprites name="Atmospheric design">
       <sprite>sprites\spr_bulb</sprite>
       <sprite>sprites\spr_switch</sprite>
-      <sprite>sprites\spr_cursor</sprite>
       <sprite>sprites\spr_holder</sprite>
     </sprites>
     <sprite>sprites\spr_items</sprite>
-    <sprites name="Rocks">
-      <sprite>sprites\spr_rock1</sprite>
-    </sprites>
     <sprites name="Doors">
       <sprite>sprites\spr_Door</sprite>
       <sprite>sprites\spr_DoorOpen</sprite>
       <sprite>sprites\spr_DoorFrame</sprite>
-      <sprite>sprites\spr_DoorL</sprite>
-      <sprite>sprites\spr_DoorOpenL</sprite>
-      <sprite>sprites\spr_DoorFrameL</sprite>
-    </sprites>
-    <sprites name="pixel sprites">
-      <sprite>sprites\spr_pixel_floor</sprite>
     </sprites>
     <sprites name="Cutscenes">
       <sprite>sprites\spr_titlescreen</sprite>
-      <sprite>sprites\spr_gametitle</sprite>
     </sprites>
     <sprites name="Huds">
       <sprite>sprites\spr_Hud</sprite>
@@ -158,14 +160,8 @@
       <sprite>sprites\spr_picon</sprite>
       <sprite>sprites\spr_map</sprite>
     </sprites>
-    <sprites name="Control">
-      <sprite>sprites\sprSystem</sprite>
-    </sprites>
     <sprites name="Locator">
       <sprite>sprites\sprLocator</sprite>
-    </sprites>
-    <sprites name="Portal">
-      <sprite>sprites\sprPortal</sprite>
     </sprites>
     <sprites name="Save Station">
       <sprite>sprites\spr_savestation</sprite>
@@ -190,6 +186,9 @@
         <sprite>sprites\spr_weapon</sprite>
       </sprites>
     </sprites>
+    <sprites name="Hitboxes">
+      <sprite>sprites\spr_zakhitbox</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_Suit1floor</background>
@@ -208,6 +207,7 @@
     <background>background\bg_floor</background>
     <background>background\bg_tileset_level1</background>
     <background>background\bg_tileset</background>
+    <background>background\bg_titlescreen</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -239,10 +239,10 @@
     <objects name="Reg Suit Player">
       <object>objects\obj_player</object>
       <object>objects\obj_bullet</object>
+      <object>objects\obj_bulletleft</object>
       <object>objects\obj_lightning</object>
       <object>objects\obj_sword_mask</object>
       <object>objects\obj_sword_maskL</object>
-      <object>objects\object80</object>
     </objects>
     <objects name="Special Objects">
       <object>objects\obj_death</object>
@@ -257,9 +257,11 @@
       <object>objects\obj_warp</object>
       <object>objects\obj_menu</object>
       <object>objects\obj_trigger_death</object>
-      <object>objects\obj_health</object>
+      <object>objects\obj_healthup</object>
       <object>objects\obj_SA</object>
       <object>objects\obj_debug</object>
+      <object>objects\obj_life</object>
+      <object>objects\obj_zakdebug</object>
     </objects>
     <objects name="blocks">
       <object>objects\obj_floor</object>
@@ -269,23 +271,13 @@
       <object>objects\obj_slopeR2_mask</object>
       <object>objects\obj_slopeL2_mask</object>
       <object>objects\obj_jumpthru</object>
-      <object>objects\obj_jumpthru1</object>
       <object>objects\obj_stair</object>
-      <object>objects\obj_bkgwall</object>
-      <object>objects\obj_halfBBL</object>
-      <object>objects\obj_halfBUL</object>
-      <object>objects\obj_halfBUR</object>
-      <object>objects\obj_halfBBR</object>
       <object>objects\obj_piece_stair</object>
-      <object>objects\obj_ceiling</object>
       <object>objects\obj_piece_stairL</object>
       <object>objects\obj_piece_stairLD</object>
       <object>objects\obj_floor1</object>
       <object>objects\obj_spikes</object>
-      <object>objects\obj_floor2</object>
-      <object>objects\obj_wall1</object>
       <object>objects\obj_seethru</object>
-      <object>objects\obj_room1</object>
     </objects>
     <objects name="enemies">
       <objects name="Eyeball">
@@ -294,6 +286,16 @@
         <objects name="Bug">
           <object>objects\obj_bug_destroy</object>
           <object>objects\obj_bug</object>
+        </objects>
+      </objects>
+      <objects name="Zak'rarek">
+        <object>objects\obj_zak</object>
+        <objects name="Attacks">
+          <object>objects\obj_zakspit</object>
+          <object>objects\obj_zakclaw</object>
+        </objects>
+        <objects name="Hitbox">
+          <object>objects\obj_zakhitbox</object>
         </objects>
       </objects>
     </objects>
@@ -309,14 +311,6 @@
       <object>objects\obj_bulb</object>
       <object>objects\obj_switch</object>
       <object>objects\obj_holder</object>
-    </objects>
-    <objects name="Door">
-      <object>objects\obj_Door</object>
-      <object>objects\obj_DoorFrame</object>
-      <object>objects\obj_DoorOpen</object>
-      <object>objects\obj_DoorL</object>
-      <object>objects\obj_DoorOpenL</object>
-      <object>objects\obj_DoorFrameL</object>
     </objects>
     <objects name="Cutscenes">
       <object>objects\obj_titlescreen</object>
@@ -355,7 +349,6 @@
     <timelines name="AFK">
       <timeline>timelines\Gamepad_Idle_Right</timeline>
     </timelines>
-    <timeline>timelines\Player_Hit</timeline>
     <timelines name="GameName">
       <timeline>timelines\GameName</timeline>
     </timelines>
@@ -376,6 +369,7 @@
     </timelines>
     <timeline>timelines\TL_Reload</timeline>
     <timeline>timelines\TL_fadein</timeline>
+    <timeline>timelines\Player_Hit</timeline>
   </timelines>
   <rooms name="rooms">
     <rooms name="Intro">
@@ -400,10 +394,6 @@
   <help>
     <rtf>help.rtf</rtf>
   </help>
-  <audiogroups name="audiogroups">
-    <audiogroup name="audiogroup_default"/>
-    <audiogroup name="audiogroup1"/>
-  </audiogroups>
   <TutorialState>
     <IsTutorial>0</IsTutorial>
     <TutorialName></TutorialName>

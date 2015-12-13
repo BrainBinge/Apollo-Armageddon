@@ -73,7 +73,10 @@ RegSuitNH = true
 globalvar RegSuitBD;
 RegSuitBD = false
 
-
+globalvar zakcount;
+zakcount=1
+zakdamage=0
+Talk_Npc=false
 </string>
           </argument>
         </arguments>
@@ -100,6 +103,45 @@ RegSuitBD = false
 </string>
           </argument>
         </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>zakcount=1
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>308</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_timeline_stop</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="2" enumb="1">
@@ -220,6 +262,7 @@ RegSuitBD = false
 
 if (RegSuitNH)
 {
+
 var accel, fric;
 if (on_ground) {
     accel = S_RUN_ACCEL;
@@ -241,14 +284,14 @@ if  (keyboard_check(vk_right)) {
     sprite_index=spr_playerRunRight
     image_speed=.60
     facing=0
-    
+    mask_index=spr_player_mask
     
     }else if (keyboard_check_released( vk_right)){  
     //not running right
     sprite_index=spr_player_mask
     hspd=0  
     facing=0
-    
+    mask_index=spr_player_mask
 
 
 } else if (keyboard_check( vk_left )){
@@ -262,12 +305,14 @@ if  (keyboard_check(vk_right)) {
     sprite_index=spr_playerRunLeft
     image_speed=.60
     facing=180
+    mask_index=spr_player_left
 
 }else if (keyboard_check_released(vk_left)){
     //not running left
     sprite_index=spr_player_left
     hspd=0  
     facing=180
+    mask_index=spr_player_mask
 
 } else {
     //Stopping
@@ -279,20 +324,23 @@ if  (keyboard_check(vk_right)) {
 if (on_ground) {
 
     candj = true;
+    fall = false;
     
     //Jumping
     if (keyboard_check_pressed(vk_space))
         vspd = S_JUMP_SPEED;
+   
               
 }else {
 
     //Gravity
     vspd = approach( vspd, S_MAX_V, S_GRAVITY );
-
+    
+    
     //Double jumping
     if (keyboard_check_pressed( vk_space ) &amp;&amp; candj) {
         candj = false;
-        vspd = S_DJUMP_SPEED;     
+        vspd = S_DJUMP_SPEED;
         
 }
 }
@@ -322,14 +370,14 @@ if  (keyboard_check(vk_right)) {
     sprite_index=spr_playerRunRightBD
     image_speed=.60
     facing=0
-    
+    mask_index=spr_player_mask
     
     }else if (keyboard_check_released( vk_right)){  
     //not running right
     sprite_index=spr_player_maskBD
     hspd=0  
     facing=0
-    
+    mask_index=spr_player_mask
 
 
 } else if (keyboard_check( vk_left )){
@@ -343,12 +391,14 @@ if  (keyboard_check(vk_right)) {
     sprite_index=spr_playerRunLeftBD
     image_speed=.60
     facing=180
+    mask_index=spr_player_left
 
 }else if (keyboard_check_released(vk_left)){
     //not running left
     sprite_index=spr_player_leftBD
     hspd=0  
     facing=180
+    mask_index=spr_player_left
 
 } else {
     //Stopping
@@ -364,11 +414,11 @@ if (on_ground) {
     //Jumping
     if (keyboard_check_pressed(vk_space))
         vspd = S_JUMP_SPEED;
-              
 }else {
 
     //Gravity
     vspd = approach( vspd, S_MAX_V, S_GRAVITY );
+    
 
     //Double jumping
     if (keyboard_check_pressed( vk_space ) &amp;&amp; candj) {
@@ -378,6 +428,8 @@ if (on_ground) {
 }
 }
 }
+
+
 
 </string>
           </argument>
@@ -399,7 +451,8 @@ if (on_ground) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if !view_visible[0]
+            <string>
+if !view_visible[0]
     {
         view_visible[0]=true
     }
@@ -408,6 +461,8 @@ if view_visible[0]
     {
         view_visible[0]=obj_player.view_visible[0]
     }
+    
+
 </string>
           </argument>
         </arguments>
@@ -430,29 +485,13 @@ if view_visible[0]
             <kind>1</kind>
             <string>///Attacking Gun Right
 
-if (RegSuitNH)
-{
-if keyboard_check(vk_right) &amp;&amp; keyboard_check(ord('A')) 
-{
-    sprite_index=spr_a_AttackRight 
-    facing=0
-}
-
-
 if (canshoot)
 {
-if keyboard_check(ord('A')) &amp;&amp; sprite_index=spr_player_mask
-    {
-        sprite_index=spr_a_AttackRight
-        facing=0
-    }
-    
-if keyboard_check(ord('A')) &amp;&amp; sprite_index=spr_player_mask 
+if sprite_index=spr_player_mask &amp;&amp; keyboard_check(ord('A')) 
 {
     sprite_index=spr_a_AttackRight 
     facing=0
 }
-  
     
 if sprite_index=spr_a_AttackRight &amp;&amp; keyboard_check_released(ord('A')) 
 {
@@ -460,7 +499,16 @@ if sprite_index=spr_a_AttackRight &amp;&amp; keyboard_check_released(ord('A'))
     facing=0
 }
 
-}
+if sprite_index=spr_playerRunRight &amp;&amp; keyboard_check(ord('A'))
+    {
+        sprite_index=spr_rungun
+        mask_index=spr_player_mask
+    }
+
+if sprite_index=spr_rungun &amp;&amp; keyboard_check_released(ord('A')) &amp;&amp; keyboard_check(vk_right)
+    {
+        sprite_index=spr_playerRunRight
+    }
 }
 </string>
           </argument>
@@ -483,27 +531,32 @@ if sprite_index=spr_a_AttackRight &amp;&amp; keyboard_check_released(ord('A'))
           <argument>
             <kind>1</kind>
             <string>///Attacking Gun Left
+
 if (canshoot)
 {
-if keyboard_check(vk_left) &amp;&amp; keyboard_check(ord('A')) 
+if sprite_index=spr_player_left &amp;&amp; keyboard_check(ord('A')) 
 {
     sprite_index=spr_a_AttackLeft
     facing=180
 }
-
-if keyboard_check(ord('A')) &amp;&amp; sprite_index=spr_player_left 
-{
-    sprite_index=spr_a_AttackLeft
-    facing=180   
-}
-
     
 if sprite_index=spr_a_AttackLeft &amp;&amp; keyboard_check_released(ord('A')) 
 {
-    sprite_index=spr_player_left 
+    sprite_index=spr_player_left
     facing=180
 }
 
+if sprite_index=spr_playerRunLeft &amp;&amp; keyboard_check(ord('A'))
+    {
+        sprite_index=spr_rungunl
+        mask_index=spr_player_mask
+        image_speed=.6
+    }
+
+if sprite_index=spr_rungunl &amp;&amp; keyboard_check_released(ord('A')) &amp;&amp; keyboard_check(vk_left)
+    {
+        sprite_index=spr_playerRunLeft
+    }
 }
 </string>
           </argument>
@@ -542,7 +595,17 @@ if global.hp&gt;=global.MaxHp
     }
 
 global.SA+= abs (.05)
-global.clip+=.01
+
+if global.ammo&gt;=0
+    {
+        global.clip+=.1
+        global.ammo-=.1
+    }
+    
+if global.clip&gt;=100
+    {
+        global.clip=100
+    }
 
 if global.clip&lt;=1
     {
@@ -558,7 +621,6 @@ if global.SA&gt;=global.MaxSA
     {
         global.SA=global.MaxSA
     }
-    
 
 </string>
           </argument>
@@ -586,7 +648,6 @@ if global.Exp&gt;=global.MaxExp
     {
         global.level+=1
         global.MaxHp+=75
-        global.ammo+=25
         global.MaxExp+=100
     }
 
@@ -596,40 +657,6 @@ if global.level&gt;=global.MaxLevel
         global.level=global.MaxLevel
     }
     
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Global Damage
-
-
-if sprite_index=spr_a_AttackLeft
-{
-    global.damage=true
-}   
-
-if sprite_index=spr_a_AttackRight
-{
-
-}   global.damage=true
 
 
 </string>
@@ -764,6 +791,17 @@ if sprite_index=spr_player_daggerR &amp;&amp; image_index=15
         sprite_index=spr_player_maskBD
     }
     
+if keyboard_check_pressed(ord('D')) &amp;&amp; sprite_index=spr_player_leftBD
+    {
+        sprite_index=spr_player_daggerL
+        image_speed=1
+    }
+   
+if sprite_index=spr_player_daggerR &amp;&amp; image_index=15
+    {
+        sprite_index=spr_player_leftBD
+    }
+
 }
 </string>
           </argument>
@@ -860,8 +898,6 @@ if (obj_inv2) &amp;&amp; BDEquip=false
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="4" ename="obj_Door">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -878,7 +914,151 @@ if (obj_inv2) &amp;&amp; BDEquip=false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>speed=0
+            <string>///Monster Creations
+//Monsters are created at a desired location in this code block.
+
+if (x&gt;=1870 &amp;&amp; x&lt;=1900) &amp;&amp; y=1279 &amp;&amp; zakcount=1
+    {
+        instance_create(x,y,obj_zak)
+        zakcount=0
+        alarm[3]=900
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (Talk_Npc)
+    {
+        S_MAX_H=0
+        sprite_index=spr_player_mask
+    }else S_MAX_H=7.5
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_zakclaw">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.hp-=13
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_zakspit">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.hp-=20
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_Eyeball">
+      <action>
+        <libid>1</libid>
+        <id>305</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_timeline_set</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>14</kind>
+            <timeline>Player_Hit</timeline>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>0</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if visible=true 
+    {
+        global.hp-=.12
+        sprite_index=spr_player_Hurt
+    }
+    
+if Stealth_Suit=false
+    {
+        global.hp -=0
+    }
 </string>
           </argument>
         </arguments>
@@ -956,30 +1136,6 @@ if (obj_inv2) &amp;&amp; BDEquip=false
           <argument>
             <kind>4</kind>
             <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>301</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_set_alarm</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>3</string>
           </argument>
         </arguments>
       </action>
@@ -1085,6 +1241,29 @@ if place_meeting(x-1,y-1,obj_piece_stair)
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_life">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.hp+=32
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="4" ename="obj_SA">
       <action>
         <libid>1</libid>
@@ -1103,29 +1282,6 @@ if place_meeting(x-1,y-1,obj_piece_stair)
           <argument>
             <kind>1</kind>
             <string>global.SA+=15
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_health">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.hp+=15
 </string>
           </argument>
         </arguments>
@@ -1172,7 +1328,7 @@ if place_meeting(x-1,y-1,obj_piece_stair)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.ammo+=25
+            <string>global.ammo+=10
 </string>
           </argument>
         </arguments>
@@ -1383,32 +1539,6 @@ if (sprite_index==spr_player_daggerR)
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// draw self and bounding box
-draw_self();
-
-draw_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, true);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="9" enumb="121">
       <action>
         <libid>1</libid>
@@ -1486,28 +1616,6 @@ draw_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, true);
         </arguments>
       </action>
     </event>
-    <event eventtype="9" enumb="113">
-      <action>
-        <libid>1</libid>
-        <id>531</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_fullscreen</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="9" enumb="77">
       <action>
         <libid>1</libid>
@@ -1530,6 +1638,7 @@ instance_create(x,y,obj_inv1)
 showinv=true
 EmptyInv=true
 page2 = false
+
 </string>
           </argument>
         </arguments>
@@ -1557,6 +1666,56 @@ page2 = false
           <argument>
             <kind>0</kind>
             <string>true</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>sound_play(Gun_attack)
+sound_volume(Gun_attack,.2)
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>facing</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>0</string>
           </argument>
           <argument>
             <kind>4</kind>
@@ -1606,11 +1765,11 @@ page2 = false
           </argument>
           <argument>
             <kind>0</kind>
-            <string>10</string>
+            <string>30</string>
           </argument>
           <argument>
             <kind>0</kind>
-            <string>facing</string>
+            <string>0</string>
           </argument>
         </arguments>
       </action>
@@ -1650,6 +1809,172 @@ image_alpha=1
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>canshoot</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>true</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>facing</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>180</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>206</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_create_object_motion</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>10</kind>
+            <object>obj_bulletleft</object>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>x</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>y</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>30</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>180</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.clip-=1
+    
+image_alpha=1
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+    </event>
+    <event eventtype="9" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>game_end()
+</string>
+          </argument>
+        </arguments>
       </action>
     </event>
     <event eventtype="9" enumb="18">

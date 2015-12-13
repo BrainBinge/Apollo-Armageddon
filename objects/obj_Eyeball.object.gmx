@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>EBhp=100
 MaxEBhp=100
-
+image_speed=.5
 </string>
           </argument>
         </arguments>
@@ -53,6 +53,7 @@ MaxEBhp=100
             <string>if place_meeting(x-1,y,obj_sword_mask) || place_meeting(x-1,y+1,obj_sword_mask) || place_meeting(x-1,y-1,obj_sword_mask)
     {
         x+=50
+        
     }
 
 if Stealth_Suit=true
@@ -66,7 +67,6 @@ if distance_to_object(obj_player)&lt;=138 &amp;&amp; Stealth_Suit=false
     {
         move_towards_point(obj_player.x,obj_player.y,2)
     }
-    
 
 </string>
           </argument>
@@ -134,6 +134,14 @@ if distance_to_object(obj_player)&lt;=138 &amp;&amp; Stealth_Suit=false
 instance_destroy()
 global.Exp+=90  
 effect_create_above(ef_explosion,x,y,1,c_red) 
+sound_play(sd_Eyeballdeath)
+
+if global.hp&lt;global.MaxHp
+    {
+instance_create(x,y,obj_life)
+instance_create(x,y,obj_life)
+instance_create(x,y,obj_life)
+    }
 </string>
           </argument>
         </arguments>
@@ -154,7 +162,7 @@ effect_create_above(ef_explosion,x,y,1,c_red)
         <arguments>
           <argument>
             <kind>10</kind>
-            <object>obj_health</object>
+            <object>obj_SA</object>
           </argument>
           <argument>
             <kind>10</kind>
@@ -162,11 +170,11 @@ effect_create_above(ef_explosion,x,y,1,c_red)
           </argument>
           <argument>
             <kind>10</kind>
-            <object>obj_SA</object>
+            <object>obj_life</object>
           </argument>
           <argument>
             <kind>10</kind>
-            <object>-100</object>
+            <object>obj_life</object>
           </argument>
           <argument>
             <kind>0</kind>
@@ -232,7 +240,7 @@ effect_create_above(ef_explosion,x,y,1,c_red)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>EBhp-=irandom_range(10,65)
+            <string>EBhp-=irandom_range(1,20)
 </string>
           </argument>
         </arguments>
@@ -255,7 +263,7 @@ effect_create_above(ef_explosion,x,y,1,c_red)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>EBhp-=irandom_range(5,65)
+            <string>EBhp-=irandom_range(1,20)
 
 </string>
           </argument>
@@ -285,6 +293,31 @@ effect_create_above(ef_explosion,x,y,1,c_red)
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_bulletleft">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>EBhp-=(irandom_range(20,45))
+sound_play(sd_Eyeballhurt)
+sound_volume(sd_Eyeballhurt,.3)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="4" ename="obj_bullet">
       <action>
         <libid>1</libid>
@@ -302,7 +335,9 @@ effect_create_above(ef_explosion,x,y,1,c_red)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>EBhp-=15
+            <string>EBhp-=(irandom_range(20,45))
+sound_play(sd_Eyeballhurt)
+sound_volume(sd_Eyeballhurt,.3)
 </string>
           </argument>
         </arguments>

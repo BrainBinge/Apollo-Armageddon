@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Talk_Npc=false
+            <string>globalvar Talk_Npc;
+Talk_Npc=false
 Npc_Talk="This is a test."
 </string>
           </argument>
@@ -53,9 +54,9 @@ Npc_Talk="This is a test."
 if (Talk_Npc==true)
 {
     draw_set_color(c_blue);
-    draw_rectangle(384,48,515,112,false);
+    draw_rectangle(obj_npc1.x-10,obj_npc1.y-20,obj_npc1.x+80,obj_npc1.y-90,false);
     draw_set_color(c_black);
-    draw_text(395,80,Npc_Talk)
+    draw_text(obj_npc1.x-10,obj_npc1.y-85,Npc_Talk)
 }
 </string>
           </argument>
@@ -82,12 +83,9 @@ if (Talk_Npc==true)
             <string>if (distance_to_object(obj_player)&lt;64 &amp;&amp; (image_angle==(obj_player.image_angle+0)mod 360)){
 if (Talk_Npc==false){
     Talk_Npc=true
-    free=false
-    hspeed=0
 }else{
     Talk_Npc=false
-    free=true
-    hspeed=S_MAX_H
+    
 }
 }
 

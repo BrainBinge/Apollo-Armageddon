@@ -39,7 +39,9 @@ vspd = 0;
 //step.  The object is moved based on these rounded, but the un-used
 //fraction of a pixel is saved for next step, so objects with a
 //speed less than 1 will still gradually move.
+globalvar h_counter;
 h_counter = 0;
+globalvar v_counter;
 v_counter = 0;
 
 //This variables holds whether the object is sitting on solid ground.
@@ -90,10 +92,10 @@ repeat (abs(h))
 {
     if (place_meeting(x + sign(h), y, obj_floor))
     {
-        if (!place_meeting(x + sign(h), y, obj_floor))
+        if place_meeting(x + sign(h), y, obj_slopeL) || place_meeting(x + sign(h), y, obj_slopeR) 
         {
             //Running up slopes
-            y -= 1;
+            y -= 8;
             x += sign(h);
             slope = true;
         }

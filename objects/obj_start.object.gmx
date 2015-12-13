@@ -64,6 +64,7 @@ B_dialog12="Terk must find a cure if there is one. And so he lands on this stran
             <string>if keyboard_check(vk_enter)
 {
     room_goto(Level1_Stage1)
+    sound_loop(sd_beginning)
 }
 
 </string>

@@ -2,8 +2,7 @@ switch (mpos)
 {
     case 0:
     {
-        instance_activate_all();
-        instance_destroy();
+        room_goto(rm_intro)
         break;
     }
     
@@ -17,8 +16,7 @@ switch (mpos)
     
     case 2:
     {   
-        instance_activate_object(obj_inv);
-        instance_deactivate_object(obj_menu);
+        
         break;
     }
     

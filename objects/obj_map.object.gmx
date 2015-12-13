@@ -61,8 +61,8 @@ draw_set_alpha(0.3)
 draw_rectangle(xp,yp,xp+width,yp+height,false)
 
 //draw player on map
-draw_sprite(sprLocator,0,x,y)
 draw_set_alpha(1)
+draw_sprite(sprLocator,0,x,y)
 var playerCount;
 playerCount = instance_number(obj_player)
 for (k=0; k&lt;playerCount; k=k+1)

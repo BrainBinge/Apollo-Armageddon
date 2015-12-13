@@ -239,7 +239,37 @@ if (swaptoinvHS)
         </arguments>
       </action>
     </event>
-    <event eventtype="9" enumb="98">
+    <event eventtype="9" enumb="65">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_activate_all()
+instance_deactivate_object(obj_inv3)
+instance_deactivate_object(obj_inv2)
+instance_deactivate_object(obj_inv1)
+showinv=false
+showinv1= false
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="50">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -265,7 +295,7 @@ showinv2 = true
         </arguments>
       </action>
     </event>
-    <event eventtype="9" enumb="97">
+    <event eventtype="9" enumb="49">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -286,34 +316,6 @@ showinv2 = true
 instance_create(x,y,obj_inv1)
 showinv = true
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="65">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>instance_activate_all()
-instance_deactivate_object(obj_inv3)
-instance_deactivate_object(obj_inv2)
-instance_deactivate_object(obj_inv1)
-showinv=false
-showinv1= false
 </string>
           </argument>
         </arguments>

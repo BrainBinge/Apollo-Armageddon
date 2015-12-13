@@ -180,7 +180,7 @@ if !place_meeting(x-25,y+2,obj_floor)
         <arguments>
           <argument>
             <kind>10</kind>
-            <object>obj_health</object>
+            <object>obj_healthup</object>
           </argument>
           <argument>
             <kind>10</kind>

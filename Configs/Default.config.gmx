@@ -139,7 +139,7 @@
     <option_androidfire_push_id></option_androidfire_push_id>
     <option_androidfire_scale>-1</option_androidfire_scale>
     <option_androidfire_set_device_id></option_androidfire_set_device_id>
-    <option_androidfire_small_icon_png>Configs\Default\amazonfire\icons\small_icon</option_androidfire_small_icon_png>
+    <option_androidfire_small_icon_png>Configs\Default\amazonfire\icons\small_icon.png</option_androidfire_small_icon_png>
     <option_androidfire_splash_png>Configs\Default\amazonfire\splash.png</option_androidfire_splash_png>
     <option_androidfire_splash_time>0</option_androidfire_splash_time>
     <option_androidfire_target_sdk_version>23</option_androidfire_target_sdk_version>
@@ -200,7 +200,7 @@
     <option_androidtv_push_id></option_androidtv_push_id>
     <option_androidtv_scale>-1</option_androidtv_scale>
     <option_androidtv_set_device_id></option_androidtv_set_device_id>
-    <option_androidtv_small_icon_png>Configs\Default\androidtv\icons\small_icon</option_androidtv_small_icon_png>
+    <option_androidtv_small_icon_png>Configs\Default\androidtv\icons\small_icon.png</option_androidtv_small_icon_png>
     <option_androidtv_splash_png>Configs\Default\androidtv\splash.png</option_androidtv_splash_png>
     <option_androidtv_texture_page>1024</option_androidtv_texture_page>
     <option_androidtv_use_test_ads>false</option_androidtv_use_test_ads>
@@ -285,7 +285,7 @@
     <option_ios_google_analytics_enable>false</option_ios_google_analytics_enable>
     <option_ios_google_play_id></option_ios_google_play_id>
     <option_ios_google_tracking_id></option_ios_google_tracking_id>
-    <option_ios_half_ipad1_textures>false</option_ios_half_ipad1_textures>
+    <option_ios_half_ipad1_textures>0</option_ios_half_ipad1_textures>
     <option_ios_icon_114>Configs\Default\ios\icons\icon114.png</option_ios_icon_114>
     <option_ios_icon_120>Configs\Default\ios\icons\icon120.png</option_ios_icon_120>
     <option_ios_icon_144>Configs\Default\ios\icons\icon144.png</option_ios_icon_144>
@@ -553,7 +553,7 @@
     <option_windows_splash_screen>Configs\Default\windows\splash.png</option_windows_splash_screen>
     <option_windows_steam_app_id>0</option_windows_steam_app_id>
     <option_windows_texture_page>2048</option_windows_texture_page>
-    <option_windows_use_splash>true</option_windows_use_splash>
+    <option_windows_use_splash>-1</option_windows_use_splash>
     <option_windows_vertex_buffer_method2>1</option_windows_vertex_buffer_method2>
     <option_winphone_480_splash_image>Configs\Default\WinPhone\SplashScreenImage480.jpg</option_winphone_480_splash_image>
     <option_winphone_720_splash_image>Configs\Default\WinPhone\SplashScreenImage720.jpg</option_winphone_720_splash_image>
@@ -622,7 +622,7 @@
     <option_xbone_events_manifest_index>-1</option_xbone_events_manifest_index>
     <option_xbone_foreground_text>light</option_xbone_foreground_text>
     <option_xbone_interpolation>-1</option_xbone_interpolation>
-    <option_xbone_languages>"&lt;!-- Add languages you support here --&gt;","&lt;!-- os_get_language will only return languages listed --&gt;","&lt;!-- ""en"" is supported by default --&gt;","&lt;!-- See ""NLS APIs and Localization"" white paper --&gt;","&lt;!-- from developer.xboxlive.com for info --&gt;"</option_xbone_languages>
+    <option_xbone_languages>"&lt;!-- Insert the languages your title supports here --&gt;","&lt;!-- os_get_language will only return languages that are listed --&gt;","&lt;!-- ""en"" is supported by default --&gt;","&lt;!-- Resource Language=""en-us""/ --&gt;"</option_xbone_languages>
     <option_xbone_major_version>0</option_xbone_major_version>
     <option_xbone_minor_version>0</option_xbone_minor_version>
     <option_xbone_network_manifest_file></option_xbone_network_manifest_file>
@@ -630,9 +630,9 @@
     <option_xbone_publisher></option_xbone_publisher>
     <option_xbone_publisher_display_name></option_xbone_publisher_display_name>
     <option_xbone_ratings>"&lt;mx:Ratings Category=""game""&gt;","&lt;!-- Insert your title ratings here --&gt;","&lt;!-- See ""Title Ratings for Xbox One"" white paper --&gt;","&lt;!-- from developer.xboxlive.com for details --&gt;","&lt;/mx:Ratings&gt;"</option_xbone_ratings>
-    <option_xbone_require_audio_recording>false</option_xbone_require_audio_recording>
-    <option_xbone_require_game_chat>false</option_xbone_require_game_chat>
-    <option_xbone_require_xbox_live>0</option_xbone_require_xbox_live>
+    <option_xbone_require_audio_recording>False</option_xbone_require_audio_recording>
+    <option_xbone_require_game_chat>False</option_xbone_require_game_chat>
+    <option_xbone_require_xbox_live>True</option_xbone_require_xbox_live>
     <option_xbone_revision_version>0</option_xbone_revision_version>
     <option_xbone_scale>-1</option_xbone_scale>
     <option_xbone_service_config_id></option_xbone_service_config_id>
