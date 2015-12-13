@@ -8,6 +8,7 @@
   <sounds name="sound">
     <sounds name="Weaponary">
       <sound>sound\Gun_attack</sound>
+      <sound>sound\sd_swordeffect</sound>
     </sounds>
     <sounds name="Background Music">
       <sound>sound\sd_beginning</sound>
