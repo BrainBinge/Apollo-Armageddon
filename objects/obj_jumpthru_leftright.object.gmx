@@ -2,7 +2,7 @@
 <object>
   <spriteName>spr_platform</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>1</depth>
   <persistent>0</persistent>
   <parentName>obj_jumpthru</parentName>
@@ -28,6 +28,9 @@
             <string>/// Initialize
 vspd = 0;
 hspd = 0;
+
+//debug
+touching_player = "false";
 </string>
           </argument>
         </arguments>
@@ -54,13 +57,36 @@ hspd = 0;
 
 
 if(place_meeting(x, y+1, obj_player)){
+    toching_player = "true";
     obj_player.x += hspd;
     obj_player.y += vspd;
+}else{
+    touching_player = "false";
 }
 
 x += hspd;
 y += vspd;
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>104</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_vspeed</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>0</string>
           </argument>
         </arguments>
       </action>
@@ -82,7 +108,11 @@ y += vspd;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>///Draw self and debug vars
+
+draw_self();
+
+draw_text(x, y+10, touching_player);
 </string>
           </argument>
         </arguments>
