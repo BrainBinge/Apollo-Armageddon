@@ -98,6 +98,7 @@
       <sprite>sprites\spr_slopeR2_mask</sprite>
       <sprite>sprites\spr_slopeL2_mask</sprite>
       <sprite>sprites\spr_jumpthru</sprite>
+      <sprite>sprites\spr_platform</sprite>
       <sprite>sprites\spr_stair</sprite>
       <sprite>sprites\spr_piece_stair</sprite>
       <sprite>sprites\spr_piece_stairL</sprite>
@@ -272,6 +273,7 @@
       <object>objects\obj_slopeR2_mask</object>
       <object>objects\obj_slopeL2_mask</object>
       <object>objects\obj_jumpthru</object>
+      <object>objects\obj_jumpthru_leftright</object>
       <object>objects\obj_stair</object>
       <object>objects\obj_piece_stair</object>
       <object>objects\obj_piece_stairL</object>
