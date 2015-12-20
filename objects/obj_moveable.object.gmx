@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//This object will never actually be instantiated - it's just
+            <string>/// Initialize
+
+//This object will never actually be instantiated - it's just
 //a parent for all objects which will use the custom movement
 //system.
 

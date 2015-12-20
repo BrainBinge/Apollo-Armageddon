@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>1</depth>
   <persistent>0</persistent>
-  <parentName>obj_jumpthru</parentName>
+  <parentName>obj_moveable</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -26,9 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Initialize
-vspd = 0;
-hspd = 0;
-
+event_inherited();
 //debug
 touching_player = "false";
 </string>
@@ -36,7 +34,7 @@ touching_player = "false";
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -53,7 +51,9 @@ touching_player = "false";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Move
+            <string>/// Inherit + collision check? Move
+
+event_inherited();
 
 
 if(place_meeting(x, y+1, obj_player)){
@@ -70,23 +70,27 @@ y += vspd;
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="3" enumb="1">
       <action>
         <libid>1</libid>
-        <id>104</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_set_vspeed</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>0</kind>
-            <string>0</string>
+            <kind>1</kind>
+            <string>/// Inherit
+event_inherited();
+</string>
           </argument>
         </arguments>
       </action>
@@ -109,10 +113,15 @@ y += vspd;
           <argument>
             <kind>1</kind>
             <string>///Draw self and debug vars
-
 draw_self();
 
+// Debug text showing if player on top gets detected
 draw_text(x, y+10, touching_player);
+
+//Draw bounding box
+draw_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, true);
+
+
 </string>
           </argument>
         </arguments>
